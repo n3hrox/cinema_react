@@ -11,11 +11,13 @@ import Contact from './Contact'
 // when the pathname is exactly the string "/"
 const Main = () => (
   <main>
+  <div className="content">
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route path='/schedule' component={Schedule}/>
       <Route path='/contact' component={Contact}/>
     </Switch>
+  </div>
   </main>
 )
 

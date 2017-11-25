@@ -1,5 +1,4 @@
 import React from 'react'
-
 const Schedule = () => (
   <div>
   <h2>GOT QUESTIONS?</h2>
