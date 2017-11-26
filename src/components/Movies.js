@@ -1,4 +1,6 @@
 import React from 'react'
+import {withRouter} from 'react-router-dom';
+
 
 class Movies extends React.Component {
   constructor() {
@@ -61,6 +63,10 @@ class Movies extends React.Component {
       }]
     }
   }
+  nextPath(path) {
+    this.props.history.push(path);
+  }
+
   render() {
     let rows = this.state.data.map(person => {
       return <PersonRow key = {
@@ -69,17 +75,22 @@ class Movies extends React.Component {
       data = {
         person
       }
+      history = {
+        this.props.history
+      }
       />
     })
     return <table >
       < tbody > {
         rows
-      } < /tbody> < /table>
+      }
+      < /tbody> < /table>
   }
 }
 
 const PersonRow = (props) => {
   return (
+  <div>
     <tr>
       <td>
         { props.data.id }
@@ -88,7 +99,12 @@ const PersonRow = (props) => {
         { props.data.name }
       </td>
     </tr>
+    <button onClick={() => props.history.push('/seats') }>
+      Select
+    </button>
+    </div>
+
   );
 }
 
-export default Movies
+export default withRouter(Movies)
