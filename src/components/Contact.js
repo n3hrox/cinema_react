@@ -1,5 +1,5 @@
 import React from 'react'
-const Schedule = () => (
+const Contact = () => (
   <div>
   <h2>GOT QUESTIONS?</h2>
   <p>The easiest thing to do is post on
@@ -8,4 +8,4 @@ const Schedule = () => (
   </div>
 )
 
-export default Schedule
+export default Contact

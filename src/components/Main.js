@@ -4,6 +4,7 @@ import Home from './Home'
 import Schedule from './Schedule'
 import Contact from './Contact'
 import Movies from './Movies'
+import Seats from './Seats'
 
 const Main = () => (
   <main>
@@ -13,6 +14,7 @@ const Main = () => (
       <Route path='/schedule' component={Schedule}/>
       <Route path='/contact' component={Contact}/>
       <Route path='/movies' component={Movies}/>
+      <Route path='/seats' component={Seats}/>
     </Switch>
   </div>
   </main>

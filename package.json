@@ -10,6 +10,7 @@
     "react-dom": "^16.1.1",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
+    "react-seatmap": "^0.1.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
