@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/seats.css'
 
 var api_url = 'http://localhost:5000/movie_details/';
+var movie_id = '';
 
 class Seats extends React.Component {
   constructor() {
@@ -30,11 +31,12 @@ class Seats extends React.Component {
       details: result.seats
     })).then(data => this.prepareSeats())
   }
-  
+
   getMovieDetails() {
     var url_string = window.location.href
     var url = new URL(url_string);
     var param = url.searchParams.get("movie_id");
+    movie_id = param;
     return fetch(api_url+param).then((resp) => resp.json())
   }
 
@@ -92,7 +94,8 @@ class Seats extends React.Component {
             x => this.state.seatReservedAPI.indexOf(x) < 0
           ).length > 0 ?
             () => this.props.history.push(
-              '/reservation/?seats='+ this.state.seatReserved.filter(
+              '/reservation/?movie_id=' + movie_id + '&seats=' +
+              this.state.seatReserved.filter(
                 x => this.state.seatReservedAPI.indexOf(x) < 0
               )
             ) : () => alert('Not enough seats selected!')
