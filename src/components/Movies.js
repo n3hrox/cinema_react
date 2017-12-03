@@ -9,7 +9,6 @@ class Movies extends React.Component {
     this.state = {
       data: []
     }
-    console.log(this.state.data)
   }
   componentDidMount() {
   this.getMovies().then(result => this.setState({
@@ -51,16 +50,13 @@ const PersonRow = (props) => {
   <div>
     <tr>
       <td>
-        { props.data.id }
-      </td>
-      <td>
         { props.data.name }
       </td>
     </tr>
-    <button onClick={() => props.history.push('/seats') }>
+    <button onClick={() => props.history.push('/seats/?movie_id=' + props.data.id) }>
       Select
     </button>
-    </div>
+  </div>
 
   );
 }

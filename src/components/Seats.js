@@ -1,23 +1,41 @@
 import React from 'react'
 import '../styles/seats.css'
 
+var api_url = 'http://localhost:5000/movie_details/';
+
 class Seats extends React.Component {
   constructor() {
     super();
       this.state = {
       seat: [
-        'Front1','Front2','Front3',
-        'Middle1','Middle2','Middle3',
-        'Back1','Back2','Back3'
+        'A_1', 'A_2', 'A_3', 'A_4', 'A_5',
+        'B_1', 'B_2', 'B_3', 'B_4', 'B_5',
+        'C_1', 'C_2', 'C_3', 'C_4', 'C_5',
+        'D_1', 'D_2', 'D_3', 'D_4', 'D_5',
       ],
       seatAvailable: [
-        'Front1','Front2','Front3',
-        'Middle1','Middle2','Middle3',
-        'Back1','Back2','Back3'
+        'A_1', 'A_2', 'A_3', 'A_4', 'A_5',
+        'B_1', 'B_2', 'B_3', 'B_4', 'B_5',
+        'C_1', 'C_2', 'C_3', 'C_4', 'C_5',
+        'D_1', 'D_2', 'D_3', 'D_4', 'D_5',
       ],
-      seatReserved: []
+      seatReserved: [],
+      details: []
     }
   }
+
+  componentDidMount() {
+    this.getMovieDetails().then(result => this.setState({
+      details: result.seats
+    })).then(data => this.prepareSeats())
+  }
+  getMovieDetails() {
+    var url_string = window.location.href
+    var url = new URL(url_string);
+    var param = url.searchParams.get("movie_id");
+    return fetch(api_url+param).then((resp) => resp.json())
+  }
+
 
   onClickData(seat) {
     if(this.state.seatReserved.indexOf(seat) > -1 ) {
@@ -33,10 +51,30 @@ class Seats extends React.Component {
     }
   }
 
+  prepareSeats() {
+    let seats = this.state.details;
+    console.log(seats);
+    for(var i=0; i<seats.length; i++){
+      var index = this.state.seatAvailable.indexOf(seats[i]);
+      if (index > -1) {
+        this.setState({
+          seatAvailable: this.state.seatAvailable.filter(res => res != seats[i])
+        })
+      };
+      index = this.state.seatReserved.indexOf(seats[i]);
+      if (index == -1){
+        this.setState({
+          seatReserved: this.state.seatReserved.concat(seats[i])
+        })
+      };
+    };
+  }
+
   render() {
+    let seats = this.state.details;
     return (
       <div>
-        <h1>Seat Reservation System</h1>
+        <h1>EKRAN</h1>
         <DrawGrid
           seat = { this.state.seat }
           available = { this.state.seatAvailable }
