@@ -20,6 +20,7 @@ class Seats extends React.Component {
         'D_1', 'D_2', 'D_3', 'D_4', 'D_5',
       ],
       seatReserved: [],
+      seatReservedAPI: [],
       details: []
     }
   }
@@ -61,10 +62,11 @@ class Seats extends React.Component {
           seatAvailable: this.state.seatAvailable.filter(res => res != seats[i])
         })
       };
-      index = this.state.seatReserved.indexOf(seats[i]);
+      index = this.state.seatReservedAPI.indexOf(seats[i]);
       if (index == -1){
         this.setState({
-          seatReserved: this.state.seatReserved.concat(seats[i])
+          seatReserved: this.state.seatReserved.concat(seats[i]),
+          seatReservedAPI: this.state.seatReservedAPI.concat(seats[i])
         })
       };
     };
@@ -79,6 +81,7 @@ class Seats extends React.Component {
           seat = { this.state.seat }
           available = { this.state.seatAvailable }
           reserved = { this.state.seatReserved }
+          reservedAPI = {this.state.seatReservedAPI}
           onClickData = { this.onClickData.bind(this) }
           />
       </div>
@@ -97,7 +100,10 @@ class DrawGrid extends React.Component {
                 { this.props.seat.map( row =>
                   <td
                     className={this.props.reserved.indexOf(row) > -1? 'reserved': 'available'}
-                    key={row} onClick = {e => this.onClickSeat(row)}>{row} </td>) }
+                    key={row} onClick = {
+                      this.props.reservedAPI.indexOf(row) > -1? e => alert('This seat is taken!') : e => this.onClickSeat(row)
+                    }
+                    >{row} </td>) }
               </tr>
           </tbody>
         </table>
