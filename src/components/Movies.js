@@ -1,6 +1,7 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom';
 
+
 var url = 'http://localhost:5000/movies';
 
 class Movies extends React.Component {
@@ -53,7 +54,7 @@ const PersonRow = (props) => {
         { props.data.name }
       </td>
     </tr>
-    <button onClick={() => props.history.push('/seats/?movie_id=' + props.data.id) }>
+    <button class='seatsButton' onClick={() => props.history.push('/seats/?movie_id=' + props.data.id) }>
       Select
     </button>
   </div>

@@ -75,7 +75,7 @@ class Seats extends React.Component {
   render() {
     let seats = this.state.details;
     return (
-      <div>
+      <div class='centered'>
         <h1>EKRAN</h1>
         <DrawGrid
           seat = { this.state.seat }
@@ -84,6 +84,15 @@ class Seats extends React.Component {
           reservedAPI = {this.state.seatReservedAPI}
           onClickData = { this.onClickData.bind(this) }
           />
+        <button class='seatsButton' onClick={
+            () => this.props.history.push(
+              '/reservation/?seats='+ this.state.seatReserved.filter(
+                x => this.state.seatReservedAPI.indexOf(x) < 0
+              )
+            )
+          }>
+             Confirm
+        </button>
       </div>
     )
   }

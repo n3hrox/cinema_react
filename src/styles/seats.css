@@ -1,6 +1,9 @@
 h1 {
   text-align: center;
 }
+.centered {
+  text-align: center;
+}
 
 .container {
   width: 800px;
@@ -11,7 +14,7 @@ h1 {
   width: 80px;
   height: 50px;
   padding: 50px 30px;
-  border: 2px solid orange;
+  border: 2px solid #e8a829;
   text-align: center;
   float: left;
   margin: 5px;
