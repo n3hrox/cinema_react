@@ -30,6 +30,7 @@ class Seats extends React.Component {
       details: result.seats
     })).then(data => this.prepareSeats())
   }
+  
   getMovieDetails() {
     var url_string = window.location.href
     var url = new URL(url_string);
@@ -76,7 +77,7 @@ class Seats extends React.Component {
     let seats = this.state.details;
     return (
       <div class='centered'>
-        <h1>EKRAN</h1>
+        <h1>SCREEN</h1>
         <DrawGrid
           seat = { this.state.seat }
           available = { this.state.seatAvailable }
@@ -84,6 +85,8 @@ class Seats extends React.Component {
           reservedAPI = {this.state.seatReservedAPI}
           onClickData = { this.onClickData.bind(this) }
           />
+
+
         <button class='seatsButton' onClick={
           this.state.seatReserved.filter(
             x => this.state.seatReservedAPI.indexOf(x) < 0
