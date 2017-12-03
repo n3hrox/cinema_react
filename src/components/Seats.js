@@ -85,11 +85,14 @@ class Seats extends React.Component {
           onClickData = { this.onClickData.bind(this) }
           />
         <button class='seatsButton' onClick={
+          this.state.seatReserved.filter(
+            x => this.state.seatReservedAPI.indexOf(x) < 0
+          ).length > 0 ?
             () => this.props.history.push(
               '/reservation/?seats='+ this.state.seatReserved.filter(
                 x => this.state.seatReservedAPI.indexOf(x) < 0
               )
-            )
+            ) : () => alert('Not enough seats selected!')
           }>
              Confirm
         </button>
